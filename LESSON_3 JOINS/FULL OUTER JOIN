@@ -1,3 +1,4 @@
+-- Full outer join
 SELECT *
 FROM table A
 FULL OUTER JOIN table B
