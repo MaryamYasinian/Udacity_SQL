@@ -1,3 +1,4 @@
+--LEFT JOIN
 SELECT c.countryid, c.countryName, s.stateName
 FROM country c
 LEFT JOIN state s
