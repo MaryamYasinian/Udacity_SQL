@@ -1,0 +1,30 @@
+SELECT SUM(o.total_amt_usd) total_usd, o.account_id, a.name company_name, s.name sale_rep_name
+From orders o
+JOIN accounts a
+ON o.account_id = a.id
+JOIN sales_reps s
+ON s.id = a.sales_rep_id
+GROUP BY o.account_id, a.name, s.name
+ORDER BY account_id
+
+
+
+SELECT COUNT(w.channel), w.channel, s.name sales_name
+FROM web_events w
+JOIN accounts a
+ON w.account_id = a.id
+JOIN sales_reps s
+ON s.id = a.sales_rep_id
+GROUP BY channel, sales_name
+ORDER BY COUNT(w.channel)
+
+SELECT COUNT(w.channel), w.channel, r.name
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN web_events w
+ON w.account_id = a.id
+GROUP BY w.channel, r.name
+ORDER BY COUNT (w.channel)DESC

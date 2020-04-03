@@ -1,0 +1,63 @@
+SELECT orders.*
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id;
+
+-- To make the statement shorter, we can give a nickname to the tables like orders AS o and accounts AS a
+SELECT orders.id, orders.occurred_at, accounts.name, orders.gloss_qty
+FROM orders AS o
+JOIN accounts AS a
+ON o.account_id = a.id
+WHERE a.name = 'Apple';
+
+--table.column
+SELECT orders.occurred_at, accounts.name
+FROM accounts
+JOIN orders
+ON orders.account_id = accounts.id;
+
+--This statement, SELECT *, pulls data from BOTH tables of accounts and orders
+SELECT *
+FROM orders
+JOIN accounts
+ON accounts.id = orders.account_id;
+
+--This statement, SELECT orders.* pulls data from ONE table, orders table.
+SELECT orders.*
+FROM orders
+JOIN accounts
+ON accounts.id = orders.account_id;
+
+SELECT orders.standard_qty, orders.gloss_qty, orders.poster_qty, accounts.website, accounts.primary_poc
+FROM orders
+JOIN accounts
+ON orders. account_id = accounts.id;
+
+--We have joined three tables. Here, id is the PK (primary key) and account_id in both tables are FK (Foreign Key)
+SELECT *
+FROM accounts
+JOIN web-events
+ON accounts. id = web-events.account_id
+JOIN orders
+ON accounts. id = orders. account_id
+
+SELECT o.occurred_at, a.name
+FROM orders  o
+JOIN accounts a
+ON o.account_id = a.id
+ORDER BY occurred_at
+LIMIT 1
+
+SELECT w.channel, w.occurred_at, a.name
+FROM accounts a
+JOIN web_events w
+ON w. account_id = a.id
+ORDER BY occurred_at DESC
+LIMIT 1
+
+SELECT a.primary_poc, w.occurred_at
+FROM accounts a
+JOIN web_events w
+ON w.account_id = a.id
+ORDER BY w.occurred_at
+LIMIT 1

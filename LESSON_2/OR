@@ -1,0 +1,8 @@
+SELECT id, gloss_qty, poster_qty
+FROM orders
+WHERE gloss_qty > 4000 OR poster_qty > 4000;
+
+OR is one statement which goes under one parentheses to be separated from the second sentence
+SELECT *
+FROM orders
+WHERE (gloss_qty > 1000 or poster_qty > 1000) AND standard_qty = 0;

@@ -1,0 +1,38 @@
+SELECT MIN(poster_qty), MAX(poster_qty), MIN(standard_qty), MAX(standard_qty)
+FROM orders;
+
+--NESTED QUERY WITH MAX AND MIN
+SELECT name, occurred_at
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id
+WHERE occurred_at = (SELECT MIN(occurred_at) FROM orders)
+OR    occurred_at = (SELECT MAX(occurred_at) FROM orders);
+
+SELECT a.name, o.poster_qty
+FROM orders o
+JOIN accounts a
+ON a.id = o.account_id
+WHERE poster_qty = (SELECT MAX(poster_qty) FROM orders) OR poster_qty = (SELECT MIN(poster_qty) FROM orders)
+ORDER BY poster_qty DESC
+
+
+
+SELECT MIN (occurred_at)
+FROM orders;
+
+--OR we can write the above-query this way without using MIN
+SELECT occurred_at
+FROM orders
+ORDER BY occurred_at
+LIMIT 1
+
+
+SELECT MAX (occurred_at)
+FROM web_events
+
+--OR we can write the above-query this way without using MAX
+SELECT occurred_at
+FROM web_events
+ORDER BY occurred_at DESC
+LIMIT 1

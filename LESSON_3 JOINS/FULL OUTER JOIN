@@ -1,0 +1,4 @@
+SELECT *
+FROM table A
+FULL OUTER JOIN table B
+ON table A.Column A = table B.Column A

@@ -1,0 +1,11 @@
+SELECT c.countryid, c.countryName, s.stateName
+FROM country c
+LEFT JOIN state s
+ON c.countryid = s.countryid;
+
+
+SELECT o.*, a.*
+FROM orders o
+LEFT JOIN accounts a
+ON o.account_id = a.id
+WHERE a.sales_rep_id =321500

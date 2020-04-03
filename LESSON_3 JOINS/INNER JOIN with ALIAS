@@ -1,0 +1,47 @@
+SELECT accounts.primary_poc, accounts.name, web_events.channel, web_events.occurred_at
+FROM web_events
+JOIN accounts
+ON accounts.id = web_events.account_id
+WHERE accounts.name = 'Walmart';
+
+
+--We can give alias to the tables in FROM and JOIN statement to make it more readable
+SELECT a.primary_poc, a.name, w.channel, w.occurred_at
+FROM web_events w
+JOIN accounts a
+ON a.id = w.account_id
+WHERE a.name = 'Walmart';
+
+--Giving alias to both columns and tables:
+SELECT a.name accounts_name, s.name sale_name, r.name region_name
+FROM sales_reps s
+JOIN accounts a
+ON s.id = a.sales_rep_id
+JOIN region r
+ON r.id = s.region_id
+ORDER BY a.name;
+
+SELECT accounts.name account_name, (total+0.01) /   total_amt_usd unit_price, region.name region_name
+FROM accounts
+JOIN orders
+ON orders.account_id = accounts.id;
+
+--the below codes are important. In the first example, sales_reps table was a mediator to connect region with accounts tables and orders tables
+because there was no FK between region table and accounts or orders.
+SELECT a.name account_name, r.name region_name, o. total_amt_usd / (total+0.01)
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON s.id = a.sales_rep_id
+JOIN orders o
+ON o.account_id = a.id;
+
+SELECT r.name region_name, s.name sales_name, channel
+FROM region r
+JOIN sales_reps s
+ON s. region_id = r.id
+JOIN accounts a
+ON a. sales_rep_id = s. id
+JOIN web_events w
+ON w.account_id = a.id;

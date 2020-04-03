@@ -1,0 +1,41 @@
+1.
+SELECT DATE_TRUNC('year',occurred_at), SUM(TOTAL_AMT_USD) total_sale
+FROM orders
+GROUP BY 1
+ORDER BY 2 DESC
+
+SELECT DATE_TRUNC('year',o.occurred_at), o.account_id, a.name company_name, SUM(o.TOTAL_AMT_USD) total_sale
+FROM orders o
+JOIN accounts a
+ON a.id = o.account_id
+GROUP BY 1,2,3
+ORDER BY 4 DESC
+LIMIT 10
+--this query shows sales based on months
+SELECT DATE_TRUNC('month', occurred_at) AS month, SUM(total_amt_usd) total_sale
+FROM orders
+GROUP BY 1
+ORDER BY SUM(total_amt_usd) DESC
+
+--it query shows which months the company had the most sale
+SELECT DATE_PART('month', occurred_at) AS month, SUM(total_amt_usd) total_sale
+FROM orders
+GROUP BY 1
+ORDER BY SUM(total_amt_usd) DES
+
+--The number of orders made in each year
+SELECT DATE_PART ('year', occurred_at), COUNT(*) tot_ord
+FROM orders
+GROUP BY 1
+ORDER BY 2 DESC
+
+SELECT DATE_PART('month', occurred_at) DATE, COUNT(*) TOT_ORD
+FROM orders
+GROUP BY 1
+ORDER BY 2 DESC
+
+SELECT DATE_PART('month', occurred_at) DATE, COUNT(*) TOT_ORD
+FROM orders
+WHERE occurred_at BETWEEN '2016-01-01' AND '2017-01-01'
+GROUP BY 1
+ORDER BY 2 DES

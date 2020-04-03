@@ -1,0 +1,17 @@
+
+START WITH C AND CONTINUES AND ENDS WITH WHATEVER
+SELECT name
+FROM accounts
+WHERE name LIKE 'C%';
+
+upper case lower case is important in LIKE OPERATOR
+SELECT name
+FROM accounts
+WHERE name LIKE '%s';
+
+'one' can be any where in the names
+SELECT name
+FROM accounts
+WHERE name LIKE '%one%'
+
+% IS AN IMPORTANT PART OF LIKE OPERATOR

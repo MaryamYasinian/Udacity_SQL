@@ -1,0 +1,28 @@
+SELECT *
+FROM orders
+WHERE standard_qty >1000 AND poster_qty = 0 AND gloss_qty = 0;
+-------------------------------------
+SELECT name
+FROM accounts
+WHERE name NOT LIKE 'C%' AND name LIKE '%s'
+ORDER BY name
+-------------------------------------
+SELECT occurred_at, gloss_qty
+FROM orders
+WHERE gloss_qty BETWEEN 24 AND 29;
+------------------------------------
+--We can write the above statement in this way as well:
+SELECT occurred_at, gloss_qty
+FROM orders
+WHERE gloss_qty >= 24 AND gloss_qty<=29
+-------------------------------------
+--HOW TO FIND DATES: DATED ARE CONSIDERED NON-NUMERICAL values SO THEY GO INSIDE SINGLE QUOTES
+SELECT *
+FROM web_events
+WHERE channel IN ('organic','adwords') AND occurred_at >= '2016-01-01' AND occurred_at < '2017-01-01'
+ORDER BY occurred_at
+--The above statement can be written this way as well using BETWEEN:
+SELECT *
+FROM web_events
+WHERE channel IN ('organic','adwords') AND occurred_at BETWEEN '2016-01-01' AND '2017-01-01'
+ORDER BY occurred_at

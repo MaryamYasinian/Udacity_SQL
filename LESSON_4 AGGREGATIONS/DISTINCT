@@ -1,0 +1,7 @@
+SELECT DISTINCT a.id, r.name
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+ORDER BY id

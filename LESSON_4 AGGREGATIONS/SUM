@@ -1,0 +1,19 @@
+SELECT SUM(poster_qty) poster_count
+FROM orders;
+
+SELECT SUM(standard_qty) standard_count
+FROM orders;
+
+SELECT SUM (total_amt_usd) total_count_usd
+FROM orders;
+
+SELECT SUM(standard_amt_usd) standard_count_usd, SUM(gloss_amt_usd) gloss_count_usd
+FROM orders;
+
+--Here the third column (total_count) is the sum of all the standard_amt_usd rows and gloss_amt_usd rows
+SELECT SUM(standard_amt_usd) standard_count_usd, SUM(gloss_amt_usd) gloss_count_usd, SUM(gloss_amt_usd) + SUM(standard_amt_usd) total_count
+FROM orders;
+
+-- SUM + mathematical operation to find the price of each standard paper:
+SELECT SUM (standard_amt_usd) standard_usd_count, SUM(standard_qty) standard_qty_count, SUM(standard_amt_usd) / SUM(standard_qty) unit
+FROM orders;

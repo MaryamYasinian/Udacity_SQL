@@ -1,0 +1,14 @@
+--I have given the alias of order_count for clarity of the results
+SELECT COUNT(*) order_count
+FROM orders;
+
+SELECT COUNT(*) order_count
+FROM orders
+WHERE occurred_at >= '2016-03-01'
+AND occurred_at <= '2016-04-01';
+
+--We can also count the number of all rows in a single or more columns:
+SELECT COUNT(gloss_qty) gloss_count
+FROM orders
+WHERE occurred_at >= '2016-03-01'
+AND occurred_at < '2016-03-02';
